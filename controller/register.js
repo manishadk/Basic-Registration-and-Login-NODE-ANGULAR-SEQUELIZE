@@ -4,30 +4,31 @@ module.exports = {
     check: (req, res, next) => {
         req.exists=true;
         registerModal(function(error,data) {
-            
-            var user=data.findOne({
-                where :{
-                    email : req.body.email
-                }
-            });
-            var user2=data.findById(1).then(function(datau){
-                console.log(datau.email);
-            });
-            console.log('user2 output');
-            console.log(user2);
-            console.log('the find one output');
-            console.log(user);
-            console.log('find one output stop');
+                            var user=data.findOne({
+                                where :{
+                                    email : req.body.email
+                                }
+                            }).then(function(user){
+
+                                  req.exists=false;
+                            // return next();
+                               console.log('inner user' + user +'end');
+                            });
+            // .catch(function(error){
+            //     console.log(error);
+            //     return next();
+            // });
+            console.log('outside ');
             // if (user==null)
             // {
             data.create({
                 id:'',
-                email:'manish@manish.com',
-                password:'test',
+                email:req.body.email,
+                password:req.body.password,
                 status:1
                  });
-            // req.exists=false;
-            // return next();
+            req.exists=false;
+            return next();
             // }
            
             
@@ -39,7 +40,7 @@ module.exports = {
         	// 	 return res.send('Error ');
         	// }
            ////////////////error code end//////////
-           return next();
+           // return next();
 
         });
 
