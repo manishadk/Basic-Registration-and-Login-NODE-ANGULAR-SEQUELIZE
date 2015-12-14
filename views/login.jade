@@ -1,0 +1,28 @@
+html
+head
+	meta(charset="UTF-8")
+	title ADMIN LOGIN
+link(rel='stylesheet' href='../stylesheets/style.css')
+body
+	//- h1 Welcome Admin
+	//- span #{message}
+	div.loginadmin
+		form(name='login', action='/login/test', method='post')
+			input(type="text", name="username") 
+			input(type="password", name="password")
+			input(type="submit" value="LOGIN")	
+	
+	div.loginuser
+		form(name='loginuser', action='/login/user', method='post')
+			input(type="text", name="username")
+			input(type="password", name="password")
+			input(type="submit" value="LOGIN")	
+
+	h5 New User ? Register
+	div.userregister
+	    form(name='userregister', action='/register', method='post')
+	        input(type="email", name="email")
+	        input(type="password" name="password")
+	        input(type="submit" value="REGISTER") 		
+
+	

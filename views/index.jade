@@ -1,0 +1,61 @@
+html
+	head
+		meta(charset="UTF-8")
+		title #{title}
+		link(rel='stylesheet' href='../stylesheets/style.css')
+		link(rel='stylesheet' href='../stylesheets/bootstrap.css')
+	body
+		.container
+			.row
+				.col-md-4
+					div(class="panel panel-danger")
+						.panel-heading NOT REGISTERED YET ?
+						.panel-body
+								.formgroup
+									form(name='register', action='/register', method='post')
+										label Email address
+										input(type="email",class="form-control", name="email")
+										br
+										label Enter Password
+										input(type="text",class="form-control", name="password")
+										br
+										label Re-Enter Password
+										input(type="text", class="form-control", name="password")
+										br
+										button(class="btn btn-primary", type="submit").
+											REGISTER
+				.col-md-4
+					div(class="panel panel-primary")
+						.panel-heading ADMIN LOGIN 
+						.panel-body
+								.formgroup
+									form(name='login', action='/login/admin', method='post')
+										label Username
+										input(type="text", class="form-control", name="username")
+										br
+										label Password
+										input(type="password", class="form-control", name="password")
+										br
+										button(class="btn btn-primary", type="submit").
+											LOGIN
+				.col-md-4
+					div(class="panel panel-primary")
+						.panel-heading USER LOGIN
+						.panel-body
+								.formgroup
+									form(name='loginuser', action='/login/user', method='post')
+										label Username
+										input(type="text",class="form-control", name="username")
+										br
+										label Password
+										input(type="password",class="form-control", name="password")
+										br
+										button(class="btn btn-primary", type="submit").
+											LOGIN
+			.row 
+				if message
+					div(class="alert alert-success")
+						h4 #{message}
+
+
+
