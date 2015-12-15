@@ -104,7 +104,8 @@ var users = require('./routes/users');
 var test = require('./routes/test');
 // var test2 = require('./routes/test2');
 var register=require('./routes/register');
-var login = require('./routes/login');
+var adminlogin = require('./routes/adminLogin');
+// var login = require('./routes/login');
 
 var app = express();
 
@@ -128,7 +129,8 @@ app.use('/users', users);
 // app.use('/test' , test);
 // app.use('/test2',test2);
 app.use('/register',register)
-app.use('/login',login);
+// app.use('/login',loginprev);
+app.use('/adminlogin',adminlogin);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

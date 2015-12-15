@@ -27,7 +27,7 @@ html
 						.panel-heading ADMIN LOGIN 
 						.panel-body
 								.formgroup
-									form(name='login', action='/login/admin', method='post')
+									form(name='login', action='/adminlogin', method='post')
 										label Username
 										input(type="text", class="form-control", name="username")
 										br
@@ -54,7 +54,6 @@ html
 				if message
 					div(class="alert alert-success")
 						h4 #{message}
-					div	
-
-
-
+				if messagee
+					div(class="alert alert-success")
+						h4 #{messagee}

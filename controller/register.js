@@ -1,10 +1,9 @@
-var registerModal = require('../model/registermodel');
+var registerModel = require('../model/registermodel');
 module.exports = {
 
     check: (req, res, next) =>{
-        registerModal(function(error,data) {
+        registerModel(function(error,data) {
             var student = data.findOne({
-
                 where :{
                     email : req.body.email
                 }
@@ -49,10 +48,10 @@ module.exports = {
     success: (req, res, next) =>{
 
         if(req.student_exists==true){
-           error_msg=req.body.email+' Email Already Exists';
+           msg=req.body.email+' Email Already Exists';
         }
         else{
-            success_msg=req.body.firstName+' You have been successfully registered';
+            msg=req.body.firstName+' You have been successfully registered';
         }
         res.render('index', {message: msg});
     }

@@ -1,0 +1,12 @@
+html
+	head
+		meta(charset="UTF-8")
+		title #{title}
+		link(rel='stylesheet' href='../stylesheets/style.css')
+		link(rel='stylesheet' href='../stylesheets/bootstrap.css')
+	body
+		.container
+			.row
+				if message
+					div(class="alert alert-danger")
+						h4 #{messagee}
