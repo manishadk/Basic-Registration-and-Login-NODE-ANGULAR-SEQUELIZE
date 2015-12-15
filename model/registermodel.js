@@ -1,42 +1,39 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../config');
-// var info='fdgdffgdf';
-
 module.exports = function(cb){
-var data = sequelize.define('users',
-{
 
-	id: {
-		type:Sequelize.INTEGER,
-		primaryKey:true,
-		autoIncrement:true
-	    },
+var data = sequelize.define('student',{
 
-	email:Sequelize.STRING(50),
-	password:Sequelize.STRING(50),
-	status:Sequelize.STRING(50),
-	createdAt:Sequelize.DATE,
-	updatedAt:Sequelize.DATE
+	id : {
+
+					type : Sequelize.INTEGER,
+					primaryKey:true,
+					autoIncrement:true
+
+				},
+	firstName : Sequelize.STRING(128),
+	lastName : Sequelize.STRING(128),
+	email : Sequelize.STRING(128),
+	status : Sequelize.INTEGER(1)
+
 
 },
 
 {
 	freezeTableName:true
+});
+
+data.sync().then(function(error){
+  if(cb) cb(error,data);  
+});
 }
-);
-console.log(data);
-console.log('first');
+// console.log(data);
+// console.log('first');
  
 // return {
 //   sync : sequelize.sync(),
 //   data : data
 // }
-
-sequelize.sync().then(function(error){
-  // console.log(data);
-  if(cb) cb(error,data);  
-});
-}
 // .then(function(err){
 
 //   if(err){

@@ -1,36 +1,36 @@
 var registerModal = require('../model/registermodel');
 module.exports = {
 
-    check: (req, res, next) => {
-        req.exists=true;
+    check: (req, res, next) =>{
         registerModal(function(error,data) {
-                            var user=data.findOne({
-                                where :{
-                                    email : req.body.email
-                                }
-                            }).then(function(user){
+            var student = data.findOne({
 
-                                  req.exists=false;
-                            // return next();
-                               console.log('inner user' + user +'end');
+                where :{
+                    email : req.body.email
+                }
+               }).then(function(user){
+
+                    if(user==null)
+                    {
+
+                        data.create({
+
+                                id:'',
+                                firstName:req.body.firstName,
+                                lastName:req.body.lastName,
+                                email:req.body.email,
+                                status:1
                             });
-            // .catch(function(error){
-            //     console.log(error);
-            //     return next();
-            // });
-            console.log('outside ');
-            // if (user==null)
-            // {
-            data.create({
-                id:'',
-                email:req.body.email,
-                password:req.body.password,
-                status:1
+                            req.student_exists=false;
+                            return next();
+                    }
+
+                     req.student_exists=true;
+                     return next();
                  });
-            req.exists=false;
-            return next();
-            // }
-           
+           });
+},
+         
             
             /////////////error code/////////////
 
@@ -42,25 +42,19 @@ module.exports = {
            ////////////////error code end//////////
            // return next();
 
-        });
+        // });
 
 
-    },
 
-    success: (req, res, next) => {
+    success: (req, res, next) =>{
 
-        if(req.exists==true){
-            msg=req.body.email+' Email Exists';
+        if(req.student_exists==true){
+           error_msg=req.body.email+' Email Already Exists';
         }
         else{
-            msg=req.body.email+' Registration Successfull'
+            success_msg=req.body.firstName+' You have been successfully registered';
         }
-
-        res.render('index', {
-    
-         message: msg
-        });
-        console.log('in register');
+        res.render('index', {message: msg});
     }
 
 }
