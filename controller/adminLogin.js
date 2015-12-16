@@ -10,13 +10,13 @@ module.exports={
 					password:req.body.password
 				}
 			}).then(function(authdata){
-				console.log(authdata);
+				// console.log(authdata);
 				if (!authdata){
-				console.log('auth is null');
+				// console.log('auth is null');
 				req.authenticated=false;
 				}
 				else{
-					console.log('auth is true');
+					// console.log('auth is true');
 					req.authenticated=true;
 				}
 				// else{
@@ -26,7 +26,7 @@ module.exports={
 				// }
 					return next();
      			});
-		console.log('in controller');
+		// console.log('in controller');
  
 		});
 
@@ -35,9 +35,20 @@ module.exports={
 	view: (req,res,next)=>{
 
 		if(!req.authenticated){
-		 return res.render('index',{messagee:'auth error'});
+			var js = {
+				success : 0,
+				message : 'username and password not matched'
+			}
+
+			return res.json(js);
+
+		 // return res.render('index',{messagee:'auth error'});
 		}
-			return res.render('dashboard',{messagee:'welcome yo!'});
+		var js = {
+			success : 1,
+			message : 'welcome'
+		}
+		return res.json(js);
 	}
 
 }

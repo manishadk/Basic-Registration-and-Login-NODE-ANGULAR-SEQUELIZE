@@ -105,6 +105,7 @@ var test = require('./routes/test');
 // var test2 = require('./routes/test2');
 var register=require('./routes/register');
 var adminlogin = require('./routes/adminLogin');
+var viewsOutput = require('./routes/views');
 // var login = require('./routes/login');
 
 var app = express();
@@ -131,6 +132,7 @@ app.use('/users', users);
 app.use('/register',register)
 // app.use('/login',loginprev);
 app.use('/adminlogin',adminlogin);
+app.use('/views',viewsOutput);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

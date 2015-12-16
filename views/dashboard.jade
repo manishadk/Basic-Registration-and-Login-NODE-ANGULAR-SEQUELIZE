@@ -2,11 +2,25 @@ html
 	head
 		meta(charset="UTF-8")
 		title #{title}
-		link(rel='stylesheet' href='../stylesheets/style.css')
-		link(rel='stylesheet' href='../stylesheets/bootstrap.css')
-	body
+		link(rel='stylesheet' href='/stylesheets/style.css')
+		link(rel='stylesheet' href='/stylesheets/bootstrap.css')
+		script(src="/javascripts/lib/angular/angular.min.js")
+		script(src="/javascripts/lib/angular-ui-router.min.js")
+		script(src="/javascripts/src/app.js")
+	body(ng-app="test")
 		.container
 			.row
-				if message
-					div(class="alert alert-danger")
-						h4 #{messagee}
+				if messagee
+					h4 #{messagee}
+			.row
+				ul
+					li 
+						a(ui-sref="home") Home
+					li 
+						a(ui-sref="contact") contact
+					li 
+						a(ui-sref="faq") faq
+				ui-view
+
+						
+
